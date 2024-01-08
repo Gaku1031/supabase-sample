@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  front:
+    build: 
+      context: ./
+      dockerfile: ./docker/front/Dockerfile
+    tty: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front:/app
+    working_dir: /app
+    
+  app:
+    build: ./docker/php
+    volumes:
+      - ./api/web:/work/web
+
+  web:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./api/web:/work/web
+    depends_on:
+      - app
+
+  postgresql:
+      image: postgres:14.7
+      restart: always
+      environment:
+        POSTGRES_PASSWORD: password
+        POSTGRES_USER: user
+        POSTGRES_DB: supabase_sample
+      volumes:
+        - ./docker/postgresql/initdb.d:/docker-entrypoint-initdb.d
+        - ./api/db-store:/var/lib/postgresql/data
+      ports:
+        - 5432:5432
