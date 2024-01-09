@@ -1,15 +1,18 @@
-import React, { FC, useEffect } from 'react'
-import { Index } from './presentation'
-import { supabase } from '@/utils/supabaseClient';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { supabase } from '@/utils/supabaseClient';
 
-
-export const Container: FC = () => {
+const useCheckSession = () => {
   const router = useRouter();
 
   useEffect(() => {
+    // ログインページではチェックをスキップする
+    if (router.pathname === '/login' || router.pathname === '/signup') {
+      return;
+    }
+
     const checkSession = async () => {
-      const { data, error } = await supabase.auth.getSession();
+      const { data } = await supabase.auth.getSession();
 
       if (data.session === null) {
         router.push('/login');
@@ -23,8 +26,6 @@ export const Container: FC = () => {
 
     checkSession();
   }, [router]);
+};
 
-  return (
-    <Index />
-  )
-}
+export default useCheckSession;

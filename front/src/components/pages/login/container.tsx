@@ -26,10 +26,11 @@ export const Container: FC = () => {
     const formData = getValues();
 
     try {
-      const { error: signInError } = await supabase.auth.signInWithPassword({
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
         email: formData.email,
         password: formData.password,
       })
+      console.log(data);
       if (signInError) {
         throw signInError;
       }

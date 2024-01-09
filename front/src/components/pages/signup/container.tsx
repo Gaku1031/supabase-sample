@@ -25,14 +25,24 @@ export const Container: FC = () => {
     const formData = getValues();
     setIsLoading(true);
     try {
-      const { error: signUpError } = await supabase.auth.admin.createUser({
-        email: formData.email, 
-        password: formData.password,
-        email_confirm: true,
-      })
+      const { data, error: signUpError } = await supabase.auth.signUp(
+        {
+          email: formData.email,
+          password: formData.password,
+        },
+      );
+
       if (signUpError) {
         throw signUpError;
       }
+
+      // ユーザー情報をsupabaseのpublicテーブルに保存する処理
+      if (data && data.user) {
+        await supabase.from('users').upsert([
+          { id: data.user.id, email: data.user.email, name: formData.name }
+        ]);
+      }
+
       await router.push('/login')
     } catch (error) {
       toast.error('登録に失敗しました')

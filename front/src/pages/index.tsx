@@ -1,11 +1,10 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import React, { FC } from 'react';
+// import { createPagesServerClient } from '@supabase/auth-helpers-nextjs';
+// import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 
 import { Index } from '@/components/pages';
-import { withAuth } from '@/utils/withAuth';
-
-export const getServerSideProps = withAuth();
 
 const Component: FC = () => (
   <>
