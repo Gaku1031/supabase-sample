@@ -2,18 +2,15 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import React, { FC } from 'react';
 
-import { Index } from '@/components/pages';
-import { withAuth } from '@/utils/withAuth';
-
-export const getServerSideProps = withAuth();
+import { SignUp } from '@/components/pages/signup';
 
 const Component: FC = () => (
   <>
     <Head>
-      <title>トップページ</title>
+      <title>会員登録</title>
     </Head>
 
-    <Index />
+    <SignUp />
   </>
 );
 
