@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ContentController;
+use App\Http\Controllers\StudyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/languages', [LanguageController::class, 'getAllLanguageNames']);
+Route::get('/languages/total-hours/{id}', [LanguageController::class, 'getLanguageTotalHours']);
+
+Route::get('/contents', [ContentController::class, 'getAllContentNames']);
+Route::get('/contents/total-hours/{id}', [ContentController::class, 'getContentTotalHours']);
+
+Route::get('/total-hours/today/{id}', [StudyController::class, 'getTodayTotalHours']);
+Route::get('/total-hours/month/{year}/{month}/{id}', [StudyController::class, 'getMonthTotalHours']);
+Route::get('/total-hours/all/{id}', [StudyController::class, 'getAllTotalHours']);
+
+Route::get('/hours/{year}/{month}/{id}', [StudyController::class, 'getHoursPerMonth']);

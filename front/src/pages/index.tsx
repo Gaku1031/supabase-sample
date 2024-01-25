@@ -1,8 +1,10 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import React, { FC } from 'react';
+import React, { FC, Suspense } from 'react';
 // import { createPagesServerClient } from '@supabase/auth-helpers-nextjs';
 // import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
+
+import { PageSpinner } from '@/components/atoms/PageSpinner';
 
 import { Index } from '@/components/pages';
 
@@ -12,7 +14,9 @@ const Component: FC = () => (
       <title>トップページ</title>
     </Head>
 
-    <Index />
+    <Suspense fallback={<PageSpinner />}>
+      <Index />
+    </Suspense>
   </>
 );
 

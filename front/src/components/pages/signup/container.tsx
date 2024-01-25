@@ -23,6 +23,7 @@ export const Container: FC = () => {
 
   const onSubmit = useCallback(async () => {
     const formData = getValues();
+
     setIsLoading(true);
     try {
       const { data, error: signUpError } = await supabase.auth.signUp(
@@ -38,13 +39,18 @@ export const Container: FC = () => {
 
       // ユーザー情報をsupabaseのpublicテーブルに保存する処理
       if (data && data.user) {
-        await supabase.from('users').upsert([
+        const { error: upsertError } =await supabase.from('users').upsert([
           { id: data.user.id, email: data.user.email, name: formData.name }
         ]);
+
+        if (upsertError) {
+          throw upsertError
+        }
       }
 
       await router.push('/login')
     } catch (error) {
+      console.error(error);
       toast.error('登録に失敗しました')
     } finally {
       setIsLoading(false);
