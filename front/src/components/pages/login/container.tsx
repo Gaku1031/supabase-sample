@@ -37,7 +37,7 @@ export const Container: FC = () => {
       if (signInError) {
         throw signInError;
       }
-      await router.push(`/?year=${currentYear}?month=${currentMonth}`);
+      await router.push(`/?year=${currentYear}&month=${currentMonth}`);
     } catch (error) {
       toast.error('ログインに失敗しました');
     } finally {
