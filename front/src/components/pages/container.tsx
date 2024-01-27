@@ -4,6 +4,7 @@ import useSWR from 'swr'
 import { useRouter } from 'next/router'
 import { PageSpinner } from '../atoms/PageSpinner'
 import { useUserInfo } from '@/hooks/useUserInfo'
+import dayjs from 'dayjs'
 
 export const Container: FC = () => {
 
@@ -37,6 +38,13 @@ export const Container: FC = () => {
 
   if (todayHoursLoading || monthHoursLoading || totalHoursLoading) {
     return <PageSpinner />
+  }
+
+  const currentYear = dayjs().year();
+  const currentMonth = dayjs().month() + 1;
+
+  if (router.query.year === undefined || router.query.month === undefined) {
+    router.push(`/?year=${currentYear}&month=${currentMonth}`);
   }
 
   return (
