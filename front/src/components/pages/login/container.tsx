@@ -23,7 +23,7 @@ export const Container: FC = () => {
   })
 
   const currentYear = dayjs().year();
-  const currentMonth = dayjs().month();
+  const currentMonth = dayjs().month() + 1;
 
   const onSubmit = useCallback(async () => {
     setIsLoading(true);
