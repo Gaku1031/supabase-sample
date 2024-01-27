@@ -9,8 +9,14 @@ export const Container: FC = () => {
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-  const { data: languageNames } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/languages`, fetcher);
-  const { data: totalHours } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/languages/total-hours/${userId}`, fetcher);
+  const { data: languageNames } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/languages`, fetcher, {
+    revalidateOnFocus: false,
+    key: userId,
+  });
+  const { data: totalHours } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/languages/total-hours/${userId}`, fetcher, {
+    revalidateOnFocus: false,
+    key: userId,
+  });
 
   return (
     <LanguageGraph 

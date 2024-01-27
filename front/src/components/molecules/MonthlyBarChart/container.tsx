@@ -10,12 +10,15 @@ export const Container: FC = () => {
   const { user } = useUserInfo();
   const userId = user?.id;
 
-  const year = parseInt(router.query.year as string);
-  const month = parseInt(router.query.month as string);
+  const year = router.query.year;
+  const month = router.query.month;
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-  const { data: monthlyHours } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/hours/${year}/${month}/${userId}`, fetcher);
+  const { data: monthlyHours } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/hours/${year}/${month}/${userId}`, fetcher, {
+    revalidateOnFocus: false,
+    key: [year, month, userId],
+  });
 
   return (
     <MonthlyBarChart 
