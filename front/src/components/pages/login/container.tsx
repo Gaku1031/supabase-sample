@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { loginFormSchema } from '@/services/schema';
 import { supabase } from '@/utils/supabaseClient';
 import { toast } from 'react-toastify';
+import dayjs from 'dayjs';
 
 export const Container: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -21,26 +22,28 @@ export const Container: FC = () => {
     resolver: zodResolver(loginFormSchema),
   })
 
+  const currentYear = dayjs().year();
+  const currentMonth = dayjs().month();
+
   const onSubmit = useCallback(async () => {
     setIsLoading(true);
     const formData = getValues();
 
     try {
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+      const { error: signInError } = await supabase.auth.signInWithPassword({
         email: formData.email,
         password: formData.password,
       })
-      console.log(data);
       if (signInError) {
         throw signInError;
       }
-      await router.push('/');
+      await router.push(`/?year=${currentYear}?month=${currentMonth}`);
     } catch (error) {
       toast.error('ログインに失敗しました');
     } finally {
       setIsLoading(false);
     }
-  }, [getValues, router]);
+  }, [getValues, router, currentYear, currentMonth]);
 
   return (
     <Login 

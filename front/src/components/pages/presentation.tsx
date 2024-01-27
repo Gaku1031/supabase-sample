@@ -1,12 +1,3 @@
-// import React, { FC } from 'react'
-
-// export const Index: FC = () => {
-//   return (
-//     <></>
-//   )
-// }
-
-
 import { ChangeDateButton } from "../atoms/ChangeDateButton";
 import { ContentGraph } from "../molecules/ContentGraph";
 import { HourBlock } from "../molecules/HourBlock";
