@@ -5,7 +5,6 @@ import { LanguageGraph } from "../molecules/LanguageGraph";
 import { FC } from "react";
 import { MonthlyBarChart } from "../molecules/MonthlyBarChart";
 import { Header } from "../molecules/Header";
-import { Modal } from "@/features/Modal";
 
 type Props = {
   todayHours: number;
@@ -55,9 +54,9 @@ export const Index: FC<Props> = ({
         </div>
       </div>
 
-      <div className={`fixed inset-0 z-50 overflow-y-auto ${isModalOpen ? 'block' : 'hidden'}`} >
+      {/* <div className={`fixed inset-0 z-50 overflow-y-auto ${isModalOpen ? 'block' : 'hidden'}`} >
         <Modal setIsModalOpen={setIsModalOpen}/>
-      </div>
+      </div> */}
     </div>
   );
 };

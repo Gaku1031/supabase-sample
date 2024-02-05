@@ -12,6 +12,14 @@ class LanguageContent extends Model
 
     protected $table = 'language_content';
 
+    protected $fillable = [
+        'language_id',
+        'content_id',
+        'user_id',
+        'hour',
+        'study_date',
+    ];
+
     public static function getLanguageTotalHours(string $userId)
     {
         $languageTotalHours = self::select(DB::raw('language_id, SUM(hour) as total_hour'))

@@ -6,6 +6,7 @@ use App\Models\Content;
 use App\Models\LanguageContent;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\JsonResponse;
+use App\Http\Resources\ContentNameResource;
 
 class ContentController extends Controller
 {
@@ -19,6 +20,6 @@ class ContentController extends Controller
     public function getAllContentNames(): JsonResponse
     {
         $contents = Content::getAllContentNames();
-        return response()->json($contents, Response::HTTP_OK);
+        return ContentNameResource::collection($contents)->response()->setStatusCode(Response::HTTP_OK);
     }
 }

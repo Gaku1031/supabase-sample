@@ -32,4 +32,27 @@ class StudyService
 
     return $monthlyHours;
   }
+
+  public function store(array $validated, string $userId)
+  {
+    $studyDate = $validated['study_date'];
+    $contents = $validated['contents'];
+    $languages = $validated['languages'];
+    $totalStudyTime = $validated['study_hours'];
+
+    $timePerContentLanguage = $totalStudyTime / (count($contents) * count($languages));
+
+    foreach ($languages as $languageId) {
+        foreach ($contents as $contentId) {
+            // 学習記録の保存
+            LanguageContent::create([
+              'language_id' => $languageId,
+              'content_id' => $contentId,
+              'user_id' => $userId,
+              'hour' => $timePerContentLanguage,
+              'study_date' => $studyDate,
+            ]);
+        }
+    }
+  }
 }

@@ -32,3 +32,5 @@ Route::get('/total-hours/month/{year}/{month}/{id}', [StudyController::class, 'g
 Route::get('/total-hours/all/{id}', [StudyController::class, 'getAllTotalHours']);
 
 Route::get('/hours/{year}/{month}/{id}', [StudyController::class, 'getHoursPerMonth']);
+
+Route::post('/study/{id}', [StudyController::class, 'store']);

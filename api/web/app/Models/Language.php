@@ -11,6 +11,6 @@ class Language extends Model
 
     public static function getAllLanguageNames()
     {
-        return Language::all()->pluck('name');
+        return Language::all(['id', 'name']);
     }
 }

@@ -1,15 +1,18 @@
 import React, { FC } from 'react'
+import { ButtonSpinner } from '@/components/atoms/ButtonSpinner'
 
 type Props = {
   text: string;
   type: 'button' | 'submit' | 'reset' | undefined;
   onClick?: () => void;
+  isLoading?: boolean;
 }
 
 export const PrimaryButton: FC<Props> = ({
   text,
   type,
   onClick,
+  isLoading,
 }) => {
   return (
     <button
@@ -17,6 +20,7 @@ export const PrimaryButton: FC<Props> = ({
       type={type}
       onClick={onClick}
     >
+      {isLoading ? <ButtonSpinner /> : null}
       {text}
     </button>
   )

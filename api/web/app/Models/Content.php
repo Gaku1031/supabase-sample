@@ -11,6 +11,6 @@ class Content extends Model
 
     public static function getAllContentNames()
     {
-        return Content::all()->pluck('name');
+        return Content::all(['id', 'name']);
     }
 }

@@ -20,3 +20,24 @@ export const loginFormSchema = z.object({
   email: z.string().min(1, 'メールアドレスを入力してください'),
   password: z.string().min(1, 'パスワードを入力してください'),
 });
+
+export const contentsSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+})
+
+export const languagesSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+})
+
+export const studyRecordSchema = z.object({
+  study_date: z.string().min(1, '日付を入力してください'),
+  study_hours: z.number()
+    .or(z.string().transform((val) => parseFloat(val)))
+    .refine((val) => !isNaN(val) && val >= 1, { message: '学習時間を入力してください' }),
+  // contents: z.array(z.number())
+  //   .refine((arr) => arr.length > 0, { message: '学習コンテンツを選択してください' }),
+  contents: z.array(z.number()).refine((data) => data.length > 0, { message: '学習コンテンツを選択してください' }),
+  languages: z.array(z.number()).min(1, '学習言語を選択してください'),
+})
