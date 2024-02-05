@@ -1,6 +1,6 @@
 import { FC, useState, useCallback } from 'react'
 import { Modal } from './presentation'
-import useSWR from 'swr'
+import useSWR, { mutate } from 'swr'
 import { PageSpinner } from '@/components/atoms/PageSpinner'
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +8,7 @@ import { studyRecordSchema } from "@/services/schema";
 import { StudyRecordType } from "@/services/schema/types";
 import { useUserInfo } from '@/hooks/useUserInfo';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 export const Container: FC = () => {
   const { control, register, handleSubmit, formState: { errors } } = useForm<StudyRecordType>({
@@ -22,9 +23,13 @@ export const Container: FC = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const { user } = useUserInfo();
   const userId = user?.id;
+
+  const year = router.query.year;
+  const month = router.query.month;
 
   const onSubmit = useCallback(async (data: StudyRecordType) => {
     try {
@@ -36,6 +41,18 @@ export const Container: FC = () => {
         },
         body: JSON.stringify(data),
       });
+
+      // 複数のAPIキャッシュを更新する
+      const endpoints = [
+        `${process.env.NEXT_PUBLIC_API_URL}/languages/total-hours/${userId}`, 
+        `${process.env.NEXT_PUBLIC_API_URL}/contents/total-hours/${userId}`, 
+        `${process.env.NEXT_PUBLIC_API_URL}/total-hours/today/${userId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/total-hours/month/${year}/${month}/${userId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/total-hours/all/${userId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/hours/${year}/${month}/${userId}`,
+      ]; // 更新したいエンドポイントのリスト
+      await Promise.all(endpoints.map(endpoint => mutate(endpoint)));
+
     } catch (error) {
       setIsLoading(false);
       toast.error('エラーが発生しました');
@@ -43,7 +60,7 @@ export const Container: FC = () => {
       setIsLoading(false);
       setOpen(false);
     }
-  }, [userId]);
+  }, [userId, year, month]);
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
