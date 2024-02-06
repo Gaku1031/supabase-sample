@@ -17,7 +17,7 @@ class LanguageContentSeeder extends Seeder
             [
                 'language_id' => 1,
                 'content_id'  => 1,
-                'user_id'     => 'e7bdb4ed-3a8b-4239-8554-aea98e4969c5',
+                'user_id'     => '79494230-96db-413d-be78-00a3ce7b2927',
                 'hour'        => 3.5,
                 'study_date'  => '2023-01-01',
                 'created_at'  => Carbon::now(),
@@ -26,7 +26,7 @@ class LanguageContentSeeder extends Seeder
             [
                 'language_id' => 2,
                 'content_id'  => 2,
-                'user_id'     => 'e7bdb4ed-3a8b-4239-8554-aea98e4969c5',
+                'user_id'     => '79494230-96db-413d-be78-00a3ce7b2927',
                 'hour'        => 2.5,
                 'study_date'  => '2023-01-01',
                 'created_at'  => Carbon::now(),
@@ -35,7 +35,7 @@ class LanguageContentSeeder extends Seeder
             [
                 'language_id' => 3,
                 'content_id'  => 3,
-                'user_id'     => 'e7bdb4ed-3a8b-4239-8554-aea98e4969c5',
+                'user_id'     => '79494230-96db-413d-be78-00a3ce7b2927',
                 'hour'        => 1.5,
                 'study_date'  => '2023-01-01',
                 'created_at'  => Carbon::now(),
@@ -44,7 +44,7 @@ class LanguageContentSeeder extends Seeder
             [
                 'language_id' => 4,
                 'content_id'  => 4,
-                'user_id'     => 'e7bdb4ed-3a8b-4239-8554-aea98e4969c5',
+                'user_id'     => '79494230-96db-413d-be78-00a3ce7b2927',
                 'hour'        => 0.5,
                 'study_date'  => '2023-01-01',
                 'created_at'  => Carbon::now(),
@@ -53,7 +53,7 @@ class LanguageContentSeeder extends Seeder
             [
                 'language_id' => 5,
                 'content_id'  => 1,
-                'user_id'     => 'e7bdb4ed-3a8b-4239-8554-aea98e4969c5',
+                'user_id'     => '79494230-96db-413d-be78-00a3ce7b2927',
                 'hour'        => 3.5,
                 'study_date'  => '2023-01-02',
                 'created_at'  => Carbon::now(),
@@ -62,7 +62,7 @@ class LanguageContentSeeder extends Seeder
             [
                 'language_id' => 6,
                 'content_id'  => 2,
-                'user_id'     => 'e7bdb4ed-3a8b-4239-8554-aea98e4969c5',
+                'user_id'     => '79494230-96db-413d-be78-00a3ce7b2927',
                 'hour'        => 2.5,
                 'study_date'  => '2023-01-02',
                 'created_at'  => Carbon::now(),
@@ -71,7 +71,7 @@ class LanguageContentSeeder extends Seeder
             [
                 'language_id' => 7,
                 'content_id'  => 3,
-                'user_id'     => 'e7bdb4ed-3a8b-4239-8554-aea98e4969c5',
+                'user_id'     => '79494230-96db-413d-be78-00a3ce7b2927',
                 'hour'        => 1.5,
                 'study_date'  => '2023-01-02',
                 'created_at'  => Carbon::now(),
@@ -80,7 +80,7 @@ class LanguageContentSeeder extends Seeder
             [
                 'language_id' => 1,
                 'content_id'  => 4,
-                'user_id'     => 'e7bdb4ed-3a8b-4239-8554-aea98e4969c5',
+                'user_id'     => '79494230-96db-413d-be78-00a3ce7b2927',
                 'hour'        => 0.5,
                 'study_date'  => '2023-01-02',
                 'created_at'  => Carbon::now(),

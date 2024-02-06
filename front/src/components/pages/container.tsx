@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { Index } from './presentation'
 import useSWR from 'swr'
 import { useRouter } from 'next/router'
@@ -7,8 +7,6 @@ import { useUserInfo } from '@/hooks/useUserInfo'
 import dayjs from 'dayjs'
 
 export const Container: FC = () => {
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
   const year = parseInt(router.query.year as string);
@@ -32,10 +30,6 @@ export const Container: FC = () => {
     key: userId,
   })
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-
   if (todayHoursLoading || monthHoursLoading || totalHoursLoading) {
     return <PageSpinner />
   }
@@ -52,9 +46,6 @@ export const Container: FC = () => {
       todayHours={todayHours}
       monthHours={monthHours}
       totalHours={totalHours}
-      isModalOpen={isModalOpen}
-      setIsModalOpen={setIsModalOpen}
-      handleModalOpen={handleModalOpen}
     />
   )
 }

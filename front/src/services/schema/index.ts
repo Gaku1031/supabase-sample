@@ -41,3 +41,22 @@ export const studyRecordSchema = z.object({
   contents: z.array(z.number()).refine((data) => data.length > 0, { message: '学習コンテンツを選択してください' }),
   languages: z.array(z.number()).min(1, '学習言語を選択してください'),
 })
+
+export const UserSchema = z.object({
+  email: z.string(),
+  id: z.string(),
+  is_admin: z.boolean(),
+  name: z.string(),
+})
+
+export const CreateUserSchema = z.object({
+  name: z.string().min(1, '名前を入力してください'),
+  email: z.string().min(1, 'メールアドレスを入力してください'),
+  is_admin: z.boolean(),
+})
+
+export const UpdateUserSchema = z.object({
+  name: z.string().min(1, '名前を入力してください'),
+  email: z.string().min(1, 'メールアドレスを入力してください'),
+  is_admin: z.boolean(),
+})

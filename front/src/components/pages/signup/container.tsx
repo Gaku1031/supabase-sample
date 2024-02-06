@@ -39,7 +39,7 @@ export const Container: FC = () => {
 
       // ユーザー情報をsupabaseのpublicテーブルに保存する処理
       if (data && data.user) {
-        const { error: upsertError } =await supabase.from('users').upsert([
+        const { error: upsertError } = await supabase.from('users').upsert([
           { id: data.user.id, email: data.user.email, name: formData.name }
         ]);
 
