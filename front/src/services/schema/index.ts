@@ -60,3 +60,19 @@ export const UpdateUserSchema = z.object({
   email: z.string().min(1, 'メールアドレスを入力してください'),
   is_admin: z.boolean(),
 })
+
+export const CreateContentsSchema = z.object({
+  name: z.string().min(1, 'コンテンツ名を入力してください'),
+})
+
+export const UpdateContentsSchema = z.object({
+  name: z.string().min(1, 'コンテンツ名を入力してください'),
+})
+
+export const CreateLanguagesSchema = z.object({
+  name: z.string().min(1, '言語名を入力してください'),
+})
+
+export const UpdateLanguagesSchema = z.object({
+  name: z.string().min(1, '言語名を入力してください'),
+})

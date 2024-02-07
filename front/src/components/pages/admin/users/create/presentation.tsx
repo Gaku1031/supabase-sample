@@ -25,7 +25,6 @@ import { ButtonSpinner } from "@/components/atoms/ButtonSpinner";
 import { Header } from "@/components/molecules/Header";
 import { Sidebar } from "@/components/molecules/Sidebar";
 
-
 type Props = {
   form: UseFormReturn<CreateUserType>;
   onSubmit: (data: CreateUserType) => void;
@@ -38,8 +37,6 @@ export const CreateUser: FC<Props> = ({
   isLoading,
 }) => {
   return (
-    // <Form {...{ control, errors, register, handleSubmit }}>
-
     <div className="flex flex-col bg-[#F5F5F8] min-h-screen">
       <Header />
       <div className="flex flex-1 min-h-screen">

@@ -34,7 +34,7 @@ export const Sidebar: FC = () => {
             </li>
             <li className="rounded-sm">
               <Link
-                href="/mails"
+                href="/admin/contents"
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <svg
@@ -56,7 +56,7 @@ export const Sidebar: FC = () => {
             </li>
             <li className="rounded-sm">
               <Link
-                href="/products"
+                href="/admin/languages"
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <svg

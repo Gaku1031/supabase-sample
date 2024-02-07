@@ -6,6 +6,8 @@ use App\Models\LanguageContent;
 use App\Services\StudyService;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class StudyController extends Controller
 {

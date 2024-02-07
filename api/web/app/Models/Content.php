@@ -9,8 +9,17 @@ class Content extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public static function getAllContentNames()
     {
         return Content::all(['id', 'name']);
+    }
+
+    public static function getContentName(int $contentId)
+    {
+        return Content::where('id', $contentId)->first();
     }
 }
