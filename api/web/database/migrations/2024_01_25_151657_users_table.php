@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('name')->nullable();
             $table->boolean('is_admin')->default(false);
+            $table->boolean('is_deleted')->default(false);
         });
     }
 

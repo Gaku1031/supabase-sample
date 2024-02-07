@@ -9,8 +9,17 @@ class Language extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public static function getAllLanguageNames()
     {
-        return Language::all()->pluck('name');
+        return Language::all(['id', 'name']);
+    }
+
+    public static function getLanguageName(int $languageId)
+    {
+        return Language::where('id', $languageId)->first();
     }
 }

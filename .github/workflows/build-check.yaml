@@ -1,0 +1,40 @@
+name: Build Check
+on:
+  push:
+    branches:
+      - feature/*
+      - hotfix/*
+      - fix/*
+      - release
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: front/node_modules # `front`ディレクトリ内の`node_modules`にパスを修正
+          key: ${{ runner.os }}-node-${{ hashFiles('**/front/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      
+      - name: Install dependencies
+        run: |
+          cd front # ビルドを実行する前に`front`ディレクトリに移動
+          npm install --frozen-lockfile
+      
+      - name: Build
+        run: |
+          cd front # 必要に応じてここでもディレクトリに移動
+          npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}

@@ -5,30 +5,21 @@ import { LanguageGraph } from "../molecules/LanguageGraph";
 import { FC } from "react";
 import { MonthlyBarChart } from "../molecules/MonthlyBarChart";
 import { Header } from "../molecules/Header";
-import { Modal } from "@/features/Modal";
 
 type Props = {
   todayHours: number;
   monthHours: number;
   totalHours: number;
-  isModalOpen: boolean;
-  setIsModalOpen: (value: boolean) => void;
-  handleModalOpen: () => void;
 };
 
 export const Index: FC<Props> = ({ 
   todayHours, 
   monthHours, 
   totalHours,
-  isModalOpen,
-  setIsModalOpen,
-  handleModalOpen,
 }) => {
   return (
     <div>
-      <Header
-        handleModalOpen={handleModalOpen}
-      />
+      <Header />
       <div className="bg-[#F5F5F8] px-20 pt-20 pb-10 grid grid-cols-2 gap-4 h-screen">
         <div className="flex flex-col gap-2">
           <div className="flex gap-2 w-full">
@@ -53,10 +44,6 @@ export const Index: FC<Props> = ({
         <div className="col-span-2 flex justify-center">
           <ChangeDateButton />
         </div>
-      </div>
-
-      <div className={`fixed inset-0 z-50 overflow-y-auto ${isModalOpen ? 'block' : 'hidden'}`} >
-        <Modal setIsModalOpen={setIsModalOpen}/>
       </div>
     </div>
   );
