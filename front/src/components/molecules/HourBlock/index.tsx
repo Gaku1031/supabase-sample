@@ -15,7 +15,7 @@ export const HourBlock: FC<Props> = ({
         {title}
       </p>
       <p className='font-Roboto text-[#111111] font-bold text-[30px]'>
-        {number}
+        {Math.round(number)}
       </p>
       <p className='font-Roboto text-[#97B4CD] font-normal text-sm'>
         hour
