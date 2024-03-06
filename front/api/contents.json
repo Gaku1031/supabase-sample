@@ -1,0 +1,22 @@
+{
+  "contents": [
+      {
+          "id": 1,
+          "title": "title - foo",
+          "body": "body - bar",
+          "author-id": 1
+      },
+      {
+          "id": 2,
+          "title": "title - foo2",
+          "body": "body - bar",
+          "author-id": 1
+      },
+      {
+          "id": 3,
+          "title": "title - bar",
+          "body": "body - bal",
+          "author-id": 2
+      }
+  ]
+}

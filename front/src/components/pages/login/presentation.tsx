@@ -1,6 +1,10 @@
-import { LoginFormType } from '@/services/schema/types';
-import React, { FC } from 'react'
-import { UseFormHandleSubmit, UseFormRegister, FieldErrors } from 'react-hook-form'
+import { LoginFormType } from "@/services/schema/types";
+import React, { FC } from "react";
+import {
+  UseFormHandleSubmit,
+  UseFormRegister,
+  FieldErrors,
+} from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message'
 import { ButtonSpinner } from '@/components/atoms/ButtonSpinner'
 import Link from 'next/link'
